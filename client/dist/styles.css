@@ -1,0 +1,16 @@
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.web-title {
+  display: flex;
+  justify-content: center;
+
+
+}
+
+.drop-down {
+  display: flex;
+  justify-content: center;
+}

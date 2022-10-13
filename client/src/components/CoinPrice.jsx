@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 function CoinPrice ({crypto}) {
 
   const [price, setPrice] = useState('');
@@ -19,6 +18,15 @@ function CoinPrice ({crypto}) {
       setPrice(Number(cryptoPrice.toFixed(10)).toLocaleString('en-US'));
       setPriceChangePercent(priceChangePercent.toFixed(5));
     })
+    .then (() => {
+      console.log(crypto)
+      axios.post('/sentiment', null, {
+        params: {
+          crypto: crypto,
+        }
+      })
+    })
+
   }
 
   const refreshPage = () => {

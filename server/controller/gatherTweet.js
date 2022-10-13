@@ -1,8 +1,9 @@
 const Twitter = require('twitter-lite');
+const config = require('../../config.js');
 
 const user = new Twitter ({
-  consumer_key: 'eY21UZ10W9KLycM3BZu8y7mFJ',
-  consumer_secret: 'RdrjCKwfLfowfHJryh5OyRQQtu3s1pB0fvDWE0HsieVJxJhtlU',
+  consumer_key: config.CONSUMER_KEY,
+  consumer_secret: config.CONSUMER_SECRET,
 });
 
 

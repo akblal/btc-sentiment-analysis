@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import CoinPrice from './components/CoinPrice.jsx'
-
+import CoinPrice from './components/CoinPrice.jsx';
+import Sentiment from './components/Sentiment.jsx';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -24,18 +24,26 @@ function App (props) {
           setCrypto(selected);
         }}>
           <option value= ''>Select Crypto</option>
-          <option value= 'Bitcoin'>Bitcoin</option>;
-          <option value= 'Ethereum'>Ethereum</option>;
-          <option value= 'Polygon'>Polygon</option>;
-          <option value= 'Cardano'>Cardano</option>;
+          <option value= 'bitcoin'>Bitcoin</option>;
+          <option value= 'ethereum'>Ethereum</option>;
+          <option value= 'polygon'>Polygon</option>;
+          <option value= 'cardano'>Cardano</option>;
         </select>
       </div>
 
-      <CoinPrice crypto = {crypto}/>
+      <div className= 'price-and-sentiment'>
+        <div className= 'price-container'>
+          {crypto.length > 0 &&
+            <CoinPrice crypto = {crypto}/>
+          }
+        </div>
+        <div className= 'sentiment-container'>
+          {crypto.length > 0 &&
+            <Sentiment crypto = {crypto}/>
+          }
+        </div>
+      </div>
     </div>
-
-
-
   )
 }
 

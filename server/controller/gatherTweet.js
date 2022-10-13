@@ -36,8 +36,7 @@ module.exports = {
           console.dir(e);
           res.sendStatus(400)
       }
-  };
-  console.log(req.query.crypto)
-  sentiment();
+    };
+    sentiment();
   }
 }

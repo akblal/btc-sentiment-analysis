@@ -6,7 +6,6 @@ const user = new Twitter ({
   consumer_secret: config.CONSUMER_SECRET,
 });
 
-
 module.exports = {
   gatherTweet (req, res) {
     const sentiment = async () => {

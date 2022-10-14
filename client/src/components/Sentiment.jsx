@@ -3,8 +3,6 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceGrinBeam, faFaceMeh, faFaceAngry } from '@fortawesome/free-regular-svg-icons'
 
-
-
 function Sentiment ({crypto}) {
 
   const [correlation, setCorrelation] = useState ('');

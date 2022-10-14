@@ -61,3 +61,36 @@
 .coin-logo:active {
   transform: scale(0.98);
 }
+
+.tweet-container {
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: darkcyan;
+  border-radius: 10px;
+}
+
+.tweet-container:hover {
+  transform: scale(102%);
+}
+
+.emoji-button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.emoji {
+  height: 25px;
+  border-radius: 50%;
+}
+
+.emoji:hover{
+  cursor: pointer;
+  box-shadow: 3px 2px 3px 1px rgba(0, 0, 0, 0.24);
+}
+
+.emoji:active{
+  transform: scale(90%);
+}

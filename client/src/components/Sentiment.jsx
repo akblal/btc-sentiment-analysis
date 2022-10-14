@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFaceGrinBeam, faFaceMeh, faFaceAngry } from '@fortawesome/free-regular-svg-icons'
+
 
 
 function Sentiment ({crypto}) {
@@ -35,18 +38,23 @@ function Sentiment ({crypto}) {
   }, [crypto])
 
   return (
-    <span>
+    <div>
       <h2>Time to buy {reformatName}?</h2>
       <h3>Here is what Twitter has to say: </h3>
       {tweetList.map((tweet) => {
         return (
-          <div>
+          <div className= 'tweet-container'>
             <h4>{tweet}</h4>
+            <div className= 'emoji-button-container'>
+              <FontAwesomeIcon icon={faFaceGrinBeam} className= "emoji"/>
+              <FontAwesomeIcon icon={faFaceMeh} className= "emoji"/>
+              <FontAwesomeIcon icon={faFaceAngry} className= "emoji"/>
+            </div>
           </div>
         )
       })}
       <h3>FYI: {reformatName} and Twitter sentiment analysis have {correlation}.</h3>
-    </span>
+    </div>
   )
 }
 

@@ -39,6 +39,7 @@ function CoinPrice ({crypto}) {
 
   const refreshComponent = () => {
     cryptoInfo(crypto);
+    console.log ('refresh')
   }
 
   return (

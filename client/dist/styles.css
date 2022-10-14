@@ -14,16 +14,39 @@
 }
 
 .price-and-sentiment {
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.sentiment-container,
+.price-container {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 10px;
 }
 
 .price-container {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .sentiment-container {
   display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+
+.coin-logo-container{
+  display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.coin-info {
+  align-self: center;
+}
+
+.coin-logo {
+  height: 150px;
 }

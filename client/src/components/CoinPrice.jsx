@@ -5,6 +5,12 @@ function CoinPrice ({crypto}) {
 
   const [price, setPrice] = useState('');
   const [priceChangePercent, setPriceChangePercent] = useState('');
+  const [coinLogo, setCoinLogo] = useState('');
+
+  const bitcoinLogo = 'https://seeklogo.com/images/B/bitcoin-logo-594596D72F-seeklogo.com.png?v=637945357710000000';
+  const ethereumLogo = 'https://seeklogo.com/images/E/ethereum-logo-EC6CDBA45B-seeklogo.com.png';
+  const polygonLogo = 'https://seeklogo.com/images/P/polygon-matic-logo-1DFDA3A3A8-seeklogo.com.png';
+  const cardanoLogo = 'https://seeklogo.com/images/C/cardano-ada-logo-4B6BADDB43-seeklogo.com.png';
 
   useEffect(() => {
     cryptoInfo(crypto);
@@ -19,28 +25,45 @@ function CoinPrice ({crypto}) {
       setPriceChangePercent(priceChangePercent.toFixed(5));
     })
     .then (() => {
-      console.log(crypto)
       axios.post('/sentiment', null, {
         params: {
           crypto: crypto,
         }
       })
     })
-
+    .then(() => {
+      if (crypto === 'bitcoin') {
+        setCoinLogo(bitcoinLogo);
+      } else if (crypto === 'ethereum') {
+        setCoinLogo(ethereumLogo);
+      } else if (crypto === 'polygon') {
+        setCoinLogo(polygonLogo);
+      } else if (crypto === 'cardano') {
+        setCoinLogo(cardanoLogo);
+      }
+    })
   }
 
-  const refreshPage = () => {
+  const refreshComponent = () => {
     cryptoInfo(crypto);
   }
 
   return (
-    <div>
-      <h3>{price}</h3>
-      <h3 style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>{priceChangePercent}</h3>
-      <button onClick = {refreshPage}>Refresh</button>
+    <div className= 'price-container'>
+      <div className= 'coin-logo-container'>
+        <img className= 'coin-logo' src= {coinLogo} alt= 'coin logo' onClick= {refreshComponent}/>
+      </div>
+
+      <div className= 'coin-info'>
+        <h3>{price}</h3>
+        <h3 style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>{priceChangePercent}</h3>
+
+      </div>
     </div>
   )
 }
 
 export default CoinPrice;
+
+// <button onClick ={refreshPage}>Refresh</button>
 

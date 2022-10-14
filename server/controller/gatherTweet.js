@@ -1,18 +1,21 @@
 const Twitter = require('twitter-lite');
+const deepai = require('deepai');
 const config = require('../../config.js');
 
 const user = new Twitter ({
   consumer_key: config.CONSUMER_KEY,
   consumer_secret: config.CONSUMER_SECRET,
 });
+deepai.setApiKey('quickstart-QUdJIGlzIGNvbWluZy4uLi4K');
 
 module.exports = {
   gatherTweet (req, res) {
+    let tweetList = [];
+
     const sentiment = async () => {
       try {
           // Retrieve the bearer token from twitter.
           let response = await user.getBearerToken();
-          console.log(`Got the following Bearer token from Twitter: ${response.access_token}`);
 
           // Construct our API client with the bearer token.
           const App = new Twitter({
@@ -27,13 +30,19 @@ module.exports = {
 
           // Loop over all the tweets and print the text
           for (tweet of response.statuses) {
-              console.dir(tweet.text);
+              tweetList.push(tweet.text)
           }
-          res.sendStatus(200)
+        //   var result = await deepai.callStandardApi("sentiment-analysis", {
+        //     text: "I hate hate hate to play with the newest APIs!"
+        // });
+        console.log (tweetList)
+        // console.log (result, ' sentiment analysis')
+        res.sendStatus(200)
+
       } catch(e) {
-          console.log("There was an error calling the Twitter API.");
-          console.dir(e);
-          res.sendStatus(400)
+        console.log("There was an error calling the Twitter API.");
+        console.dir(e);
+        res.sendStatus(400)
       }
     };
     sentiment();

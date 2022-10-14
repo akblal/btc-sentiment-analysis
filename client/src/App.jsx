@@ -12,6 +12,13 @@ function App (props) {
 
   const [crypto, setCrypto] = useState('');
 
+  const handleSubmit = (e) => {
+    const selected = e.target.value;
+    setCrypto(selected, ()=> {
+      console.log (crypto)
+    })
+  }
+
   return (
     <div className = 'app'>
       <div className= 'web-title'>
@@ -19,10 +26,7 @@ function App (props) {
       </div>
 
       <div className= 'drop-down'>
-        <select onChange= {(e) => {
-          const selected = e.target.value;
-          setCrypto(selected);
-        }}>
+        <select onChange= {handleSubmit}>
           <option value= ''>Select Crypto</option>
           <option value= 'bitcoin'>Bitcoin</option>;
           <option value= 'ethereum'>Ethereum</option>;
@@ -32,7 +36,7 @@ function App (props) {
       </div>
 
       <div className= 'price-and-sentiment'>
-        <div className= 'price-container'>
+        <div>
           {crypto.length > 0 &&
             <CoinPrice crypto = {crypto}/>
           }

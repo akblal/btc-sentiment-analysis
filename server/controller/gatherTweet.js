@@ -36,8 +36,9 @@ module.exports = {
         //     text: "I hate hate hate to play with the newest APIs!"
         // });
         console.log (tweetList)
+
         // console.log (result, ' sentiment analysis')
-        res.sendStatus(200)
+        res.send(tweetList).status(200);
 
       } catch(e) {
         console.log("There was an error calling the Twitter API.");

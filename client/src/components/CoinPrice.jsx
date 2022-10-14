@@ -24,13 +24,6 @@ function CoinPrice ({crypto}) {
       setPrice(Number(cryptoPrice.toFixed(10)).toLocaleString('en-US'));
       setPriceChangePercent(priceChangePercent.toFixed(5));
     })
-    .then (() => {
-      axios.post('/sentiment', null, {
-        params: {
-          crypto: crypto,
-        }
-      })
-    })
     .then(() => {
       if (crypto === 'bitcoin') {
         setCoinLogo(bitcoinLogo);
@@ -64,6 +57,3 @@ function CoinPrice ({crypto}) {
 }
 
 export default CoinPrice;
-
-// <button onClick ={refreshPage}>Refresh</button>
-

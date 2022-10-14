@@ -14,9 +14,7 @@ function App (props) {
 
   const handleSubmit = (e) => {
     const selected = e.target.value;
-    setCrypto(selected, ()=> {
-      console.log (crypto)
-    })
+    setCrypto(selected);
   }
 
   return (
@@ -38,7 +36,7 @@ function App (props) {
       <div className= 'price-and-sentiment'>
         <div>
           {crypto.length > 0 &&
-            <CoinPrice crypto = {crypto}/>
+            <CoinPrice crypto= {crypto}/>
           }
         </div>
         <div className= 'sentiment-container'>

@@ -26,6 +26,8 @@ module.exports = {
             q: req.query.crypto, // The search term
             lang: "en",        // Let's only get English tweets
             count: 10,        // Limit the results to 10 tweets
+            src: 'typed_query',
+            f: 'top'
           });
 
           // Loop over all the tweets and print the text

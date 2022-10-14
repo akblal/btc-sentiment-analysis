@@ -49,4 +49,15 @@
 
 .coin-logo {
   height: 150px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.coin-logo:hover {
+  box-shadow: 7px 6px 15px 1px rgba(0, 0, 0, 0.24);
+}
+
+.coin-logo:active {
+  transform: scale(0.98);
 }

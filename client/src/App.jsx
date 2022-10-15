@@ -44,6 +44,9 @@ function App (props) {
     axios.get(`https://api.coincap.io/v2/assets/${search}`)
     .then ((response) => {
       setValid(true);
+      if (search.length === 0) {
+        setValid(false);
+      }
     })
     .catch(() => {
       setValid(false);
@@ -91,7 +94,6 @@ function App (props) {
             required
             id="filled-required"
             label="Search for Crypto"
-            defaultValue="Coin"
             className= 'mui-component'
             onChange = {handleSearchField}
             /> :

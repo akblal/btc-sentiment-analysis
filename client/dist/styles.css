@@ -27,6 +27,20 @@
   justify-content: center;
 }
 
+.mui-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.mui-component {
+  width: 300px;
+}
+
+.mui-submit-button {
+  height: 56px;
+  font-weight: 700;
+}
+
 .price-and-sentiment {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -98,6 +112,7 @@
 .emoji {
   height: 25px;
   border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .emoji:hover{

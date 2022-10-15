@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceGrinBeam, faFaceMeh, faFaceAngry } from '@fortawesome/free-regular-svg-icons'
+import { Button } from '@mui/material';
 
 function Sentiment ({crypto}) {
 
@@ -24,6 +25,19 @@ function Sentiment ({crypto}) {
 
     setReformatName(crypto.substring(0,1).toUpperCase() + crypto.substring(1));
 
+    sentimentAnalysis(crypto);
+    // axios.post('/sentiment', null, {
+    //   params: {
+    //     crypto: crypto,
+    //   }
+    // })
+    // .then ((response) => {
+    //   const tweets = response.data;
+    //   setTweetList(tweets);
+    // })
+  }, [crypto])
+
+  const sentimentAnalysis = (crypto) => {
     axios.post('/sentiment', null, {
       params: {
         crypto: crypto,
@@ -33,7 +47,7 @@ function Sentiment ({crypto}) {
       const tweets = response.data;
       setTweetList(tweets);
     })
-  }, [crypto])
+  }
 
   return (
     <div>
@@ -51,6 +65,9 @@ function Sentiment ({crypto}) {
           </div>
         )
       })}
+      <div className= 'refresh-twitter-feed-button-container'>
+        <Button variant="outlined" onClick= {sentimentAnalysis(crypto)}>Refresh Twitter Feed</Button>
+      </div>
       <h3>FYI: {reformatName} and Twitter sentiment analysis have {correlation}.</h3>
     </div>
   )

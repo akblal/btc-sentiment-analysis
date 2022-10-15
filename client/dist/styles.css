@@ -123,3 +123,9 @@
 .emoji:active{
   transform: scale(90%);
 }
+
+.refresh-twitter-feed-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

@@ -25,7 +25,7 @@ function Sentiment ({crypto}) {
 
     setReformatName(crypto.substring(0,1).toUpperCase() + crypto.substring(1));
 
-    sentimentAnalysis(crypto);
+    sentimentAnalysis();
     // axios.post('/sentiment', null, {
     //   params: {
     //     crypto: crypto,
@@ -37,7 +37,7 @@ function Sentiment ({crypto}) {
     // })
   }, [crypto])
 
-  const sentimentAnalysis = (crypto) => {
+  const sentimentAnalysis = () => {
     axios.post('/sentiment', null, {
       params: {
         crypto: crypto,
@@ -66,7 +66,7 @@ function Sentiment ({crypto}) {
         )
       })}
       <div className= 'refresh-twitter-feed-button-container'>
-        <Button variant="outlined" onClick= {sentimentAnalysis(crypto)}>Refresh Twitter Feed</Button>
+        <Button variant="outlined" onClick= {sentimentAnalysis}>Refresh Twitter Feed</Button>
       </div>
       <h3>FYI: {reformatName} and Twitter sentiment analysis have {correlation}.</h3>
     </div>

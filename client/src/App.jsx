@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +16,9 @@ function App (props) {
 
   const [theme, setTheme] = useState('light');
   const [crypto, setCrypto] = useState('');
-  const [age, setAge] = useState(0);
+  const [search, setSearch] = useState('');
+  const [valid, setValid] = useState(true);
+  const [invalidCrypto, setInvalidCrypto] = useState('');
 
   const handleSubmit = (e) => {
     const selected = e.target.value;
@@ -28,6 +31,24 @@ function App (props) {
     } else {
       setTheme('light');
     }
+  }
+
+  const handleSearchField = (e) => {
+    e.preventDefault();
+    let query = (e.target.value).toLowerCase();
+    setSearch(query);
+  }
+
+  const handleSearchSubmit = (e) => {
+    console.log (search);
+    axios.get(`https://api.coincap.io/v2/assets/${search}`)
+    .then ((response) => {
+      setValid(true);
+    })
+    .catch(() => {
+      setValid(false);
+      setInvalidCrypto(search);
+    })
   }
 
   useEffect(() => {
@@ -47,16 +68,6 @@ function App (props) {
           <h1> Crypto Sentiment Analysis </h1>
       </div>
 
-      <div className= 'drop-down'>
-        <select onChange= {handleSubmit}>
-          <option value= ''>Select Crypto</option>
-          <option value= 'bitcoin'>Bitcoin</option>;
-          <option value= 'ethereum'>Ethereum</option>;
-          <option value= 'polygon'>Polygon</option>;
-          <option value= 'cardano'>Cardano</option>;
-        </select>
-      </div>
-
       <div className= 'mui-container' >
         <FormControl className= 'mui-component'>
           <InputLabel id="demo-simple-select-label">Crypto</InputLabel>
@@ -73,16 +84,31 @@ function App (props) {
             <MenuItem value={'polygon'}>Polygon</MenuItem>
           </Select>
         </FormControl>
+
         <div className= 'search-crypto-field-and-button'>
-          <TextField
-          required
-          id="filled-required"
-          label="Search for Crypto"
-          defaultValue="Coin"
-          className= 'mui-component'
-          />
-          <Button variant="outlined" className= 'mui-submit-button'>Submit</Button>
+          {valid ?
+            <TextField
+            required
+            id="filled-required"
+            label="Search for Crypto"
+            defaultValue="Coin"
+            className= 'mui-component'
+            onChange = {handleSearchField}
+            /> :
+            <TextField
+            error
+            id="outlined-error-helper-text"
+            label="Error"
+            defaultValue= {invalidCrypto}
+            helperText="Coin Does Not Exist."
+            className= 'mui-component'
+            onChange = {handleSearchField}
+            />
+          }
+
+          <Button variant="outlined" className= 'mui-submit-button' onClick= {handleSearchSubmit}>Submit</Button>
         </div>
+
       </div>
 
       <div className= 'price-and-sentiment'>
@@ -105,3 +131,12 @@ root.render(<BrowserRouter>
     <App />
     </BrowserRouter>)
 
+  // <div className= 'drop-down'>
+  //   <select onChange= {handleSubmit}>
+  //     <option value= ''>Select Crypto</option>
+  //     <option value= 'bitcoin'>Bitcoin</option>;
+  //     <option value= 'ethereum'>Ethereum</option>;
+  //     <option value= 'polygon'>Polygon</option>;
+  //     <option value= 'cardano'>Cardano</option>;
+  //   </select>
+  // </div>

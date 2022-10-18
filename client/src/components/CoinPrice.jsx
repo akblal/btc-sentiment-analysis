@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpLong, faArrowDownLong } from '@fortawesome/free-solid-svg-icons';
 
 function CoinPrice ({crypto}) {
 
@@ -39,7 +41,6 @@ function CoinPrice ({crypto}) {
 
   const refreshComponent = () => {
     cryptoInfo(crypto);
-    console.log ('refresh')
   }
 
   return (
@@ -49,8 +50,12 @@ function CoinPrice ({crypto}) {
       </div>
 
       <div className= 'coin-info'>
-        <h3>{price}</h3>
-        <h3 style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>{priceChangePercent}</h3>
+      {Number(price) >= 0 ?
+        <FontAwesomeIcon icon={faArrowDownLong} /> :
+        <FontAwesomeIcon icon={faArrowDownLong} />
+      }
+        <span>{price}</span>
+        <h3 style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>{priceChangePercent}%</h3>
 
       </div>
     </div>

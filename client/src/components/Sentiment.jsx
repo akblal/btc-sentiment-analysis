@@ -9,6 +9,7 @@ function Sentiment ({crypto}) {
   const [correlation, setCorrelation] = useState ('');
   const [reformatName, setReformatName] = useState ('');
   const [tweetList, setTweetList] = useState([]);
+  let infiniteTweetList = [];
 
   let listItems = '';
 
@@ -17,27 +18,17 @@ function Sentiment ({crypto}) {
       setCorrelation('62.48% correlation');
     } else if (crypto === 'ethereum') {
       setCorrelation('no correlation (study showed no correlation)');
-    } else if (crypto === 'cardano') {
-      setCorrelation('no correlation (no studies performed)');
-    } else if (crypto === 'polygon') {
+    } else {
       setCorrelation('no correlation (no studies performed)');
     }
 
     setReformatName(crypto.substring(0,1).toUpperCase() + crypto.substring(1));
 
     sentimentAnalysis();
-    // axios.post('/sentiment', null, {
-    //   params: {
-    //     crypto: crypto,
-    //   }
-    // })
-    // .then ((response) => {
-    //   const tweets = response.data;
-    //   setTweetList(tweets);
-    // })
   }, [crypto])
 
   const sentimentAnalysis = () => {
+    console.log(infiniteTweetList)
     axios.post('/sentiment', null, {
       params: {
         crypto: crypto,
@@ -45,7 +36,9 @@ function Sentiment ({crypto}) {
     })
     .then ((response) => {
       const tweets = response.data;
-      setTweetList(tweets);
+      infiniteTweetList = infiniteTweetList.concat(tweets);
+      console.log (tweets, 'tweet', infiniteTweetList)
+      setTweetList(infiniteTweetList);
     })
   }
 

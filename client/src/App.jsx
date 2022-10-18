@@ -3,7 +3,7 @@ import axios from 'axios';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons'
+import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
 import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button } from '@mui/material';
 
 import CoinPrice from './components/CoinPrice.jsx';

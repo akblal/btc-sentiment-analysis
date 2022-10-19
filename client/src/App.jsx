@@ -5,9 +5,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
 import { faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
-import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button, Popover, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button, Popover, Typography, FormControlLabel, Switch } from '@mui/material';
 
 import CoinPrice from './components/CoinPrice.jsx';
+import TopCoinList from './components/TopCoinList.jsx';
 import Sentiment from './components/Sentiment.jsx';
 
 const container = document.getElementById('root');
@@ -15,7 +17,7 @@ const root = createRoot(container);
 
 function App (props) {
 
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const [crypto, setCrypto] = useState('');
   const [search, setSearch] = useState('');
   const [valid, setValid] = useState(true);
@@ -77,8 +79,8 @@ function App (props) {
 
   return (
     <div className = {`App ${theme}`}>
-      <div>
-        <div>
+      <div className= 'top-navigation-bar-container'>
+
           <FontAwesomeIcon onClick={handleAccessibilityOpen} icon= {faUniversalAccess} className= 'accessibility-icon'/>
 
           <Popover
@@ -91,14 +93,24 @@ function App (props) {
               horizontal: 'left',
             }}
           >
-            <div className= 'toggle-theme-container'>
+            <h3>Viewing Mode: </h3>
+            <span className= 'toggle-theme-container'>
               {theme === 'light' ?
                 <FontAwesomeIcon icon={faMoon} onClick= {toggleTheme} className= 'toggle-theme-button' /> :
                 <FontAwesomeIcon icon={faSun} onClick= {toggleTheme} className= 'toggle-theme-button' />
               }
+            </span>
+            <div>
+              <FormControlLabel
+              control={<Switch
+                sx={{ m: 1 }}
+                defaultChecked
+                onChange= {toggleTheme}/>}
+              label= {theme === 'light' ? 'Light' : 'Dark'}
+              value= 'start'
+             />
             </div>
           </Popover>
-        </div>
       </div>
 
 
@@ -116,11 +128,39 @@ function App (props) {
             value={crypto}
             label="Age"
             onChange={handleSubmit}
+            style = {{
+              color: theme === 'light' ? 'black' : 'white',
+
+            }}
           >
-            <MenuItem value={'bitcoin'}>Bitcoin</MenuItem>
-            <MenuItem value={'ethereum'}>Ethereum</MenuItem>
-            <MenuItem value={'cardano'}>Cardano</MenuItem>
-            <MenuItem value={'polygon'}>Polygon</MenuItem>
+            <MenuItem
+              value={'bitcoin'}
+              style = {{
+                color: theme === 'light' ? 'black' : 'white',
+                backgroundColor: theme === 'light' ? 'white' : '#414545',
+              }}
+              >Bitcoin</MenuItem>
+            <MenuItem
+              value={'ethereum'}
+              style = {{
+                color: theme === 'light' ? 'black' : 'white',
+                backgroundColor: theme === 'light' ? 'white' : '#414545',
+              }}
+              >Ethereum</MenuItem>
+            <MenuItem
+              value={'cardano'}
+              style = {{
+                color: theme === 'light' ? 'black' : 'white',
+                backgroundColor: theme === 'light' ? 'white' : '#414545',
+              }}
+              >Cardano</MenuItem>
+            <MenuItem
+              value={'polygon'}
+              style = {{
+                color: theme === 'light' ? 'black' : 'white',
+                backgroundColor: theme === 'light' ? 'white' : '#414545',
+              }}
+              >Polygon</MenuItem>
           </Select>
           </FormControl>
           <Button variant="outlined" className= 'mui-submit-button' onClick= {handleClear}>Clear</Button>
@@ -129,11 +169,12 @@ function App (props) {
         <div className= 'search-crypto-field-and-button'>
           {valid ?
             <TextField
-            required
+
             id="filled-required"
             label="Search for Crypto"
             className= 'mui-component'
             onChange = {handleSearchField}
+            inputProps = {{ style: {color: theme === 'light' ? 'black' : 'white'}}}
             /> :
             <TextField
             error
@@ -143,6 +184,7 @@ function App (props) {
             helperText="Coin Does Not Exist."
             className= 'mui-component'
             onChange = {handleSearchField}
+            inputProps = {{ style: {color: theme === 'light' ? 'black' : 'white'}}}
             />
           }
 
@@ -153,9 +195,8 @@ function App (props) {
 
       <div className= 'price-and-sentiment'>
         <div>
-          {crypto.length > 0 &&
-            <CoinPrice crypto= {crypto}/>
-          }
+          <CoinPrice crypto= {crypto}/>
+          <TopCoinList />
         </div>
         <div className= 'sentiment-container'>
           {crypto.length > 0 &&

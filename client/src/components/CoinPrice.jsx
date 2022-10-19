@@ -44,22 +44,25 @@ function CoinPrice ({crypto}) {
   }
 
   return (
-    <div className= 'price-container'>
-      <div className= 'coin-logo-container'>
-        <img className= 'coin-logo' src= {coinLogo} alt= 'coin logo' onClick= {refreshComponent}/>
-      </div>
+    <div>
+      {crypto.length > 0 &&
+        <div className= 'price-container'>
+          <div className= 'coin-logo-container'>
+            <img className= 'coin-logo' src= {coinLogo} alt= 'coin logo' onClick= {refreshComponent}/>
+          </div>
+          <div className= 'coin-info'>
+            <div>{price}</div>
+            {Number(price) >= 0 ?
+              <FontAwesomeIcon icon={faArrowDownLong} /> :
+              <FontAwesomeIcon icon={faArrowDownLong} />
+            }
+            <span style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>{priceChangePercent}%</span>
+          </div>
+        </div>
+      }
 
-      <div className= 'coin-info'>
-
-        <div>{price}</div>
-        {Number(price) >= 0 ?
-          <FontAwesomeIcon icon={faArrowDownLong} /> :
-          <FontAwesomeIcon icon={faArrowDownLong} />
-        }
-        <span style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>{priceChangePercent}%</span>
-
-      </div>
     </div>
+
   )
 }
 

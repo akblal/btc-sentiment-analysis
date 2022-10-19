@@ -77,16 +77,9 @@ function App (props) {
 
   return (
     <div className = {`App ${theme}`}>
-      <div className= 'toggle-theme-container'>
-        {theme === 'light' ?
-          <FontAwesomeIcon icon={faMoon} onClick= {toggleTheme} className= 'toggle-theme-button' /> :
-          <FontAwesomeIcon icon={faSun} onClick= {toggleTheme} className= 'toggle-theme-button' />
-        }
-      </div>
-
       <div>
         <div>
-          <FontAwesomeIcon onClick={handleAccessibilityOpen} icon= {faUniversalAccess}/>
+          <FontAwesomeIcon onClick={handleAccessibilityOpen} icon= {faUniversalAccess} className= 'accessibility-icon'/>
 
           <Popover
             id={id}
@@ -98,7 +91,12 @@ function App (props) {
               horizontal: 'left',
             }}
           >
-            <Button variant="outlined" className= 'mui-submit-button' onClick= {console.log ('hi')}>Clear</Button>
+            <div className= 'toggle-theme-container'>
+              {theme === 'light' ?
+                <FontAwesomeIcon icon={faMoon} onClick= {toggleTheme} className= 'toggle-theme-button' /> :
+                <FontAwesomeIcon icon={faSun} onClick= {toggleTheme} className= 'toggle-theme-button' />
+              }
+            </div>
           </Popover>
         </div>
       </div>

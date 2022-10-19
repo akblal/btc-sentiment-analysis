@@ -26,6 +26,14 @@
   cursor: pointer;
 }
 
+.accessibility-icon {
+  height: 100px;
+}
+
+.accessibility-icon:hover {
+  cursor: pointer;
+}
+
 .drop-down {
   display: flex;
   justify-content: center;

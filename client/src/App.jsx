@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
+import { faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button, Popover, Typography } from '@mui/material';
 
 import CoinPrice from './components/CoinPrice.jsx';
@@ -85,9 +86,8 @@ function App (props) {
 
       <div>
         <div>
-          <Button aria-describedby={id} variant="contained" onClick={handleAccessibilityOpen}>
-            Open Popover
-          </Button>
+          <FontAwesomeIcon onClick={handleAccessibilityOpen} icon= {faUniversalAccess}/>
+
           <Popover
             id={id}
             open={open}
@@ -98,14 +98,14 @@ function App (props) {
               horizontal: 'left',
             }}
           >
-            <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+            <Button variant="outlined" className= 'mui-submit-button' onClick= {console.log ('hi')}>Clear</Button>
           </Popover>
         </div>
       </div>
 
 
-      <div className= 'web-title'>
-          <h1> Crypto Sentiment Analysis </h1>
+      <div className= 'app-title-container'>
+          <h1 onClick= {() => window.location.reload(false)} className= 'app-title'> Crypto Sentiment Analysis </h1>
       </div>
 
       <div className= 'mui-container' >

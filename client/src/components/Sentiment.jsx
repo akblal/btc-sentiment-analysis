@@ -28,7 +28,6 @@ function Sentiment ({crypto}) {
   }, [crypto])
 
   const sentimentAnalysis = () => {
-    console.log(infiniteTweetList)
     axios.post('/sentiment', null, {
       params: {
         crypto: crypto,
@@ -37,7 +36,6 @@ function Sentiment ({crypto}) {
     .then ((response) => {
       const tweets = response.data;
       infiniteTweetList = infiniteTweetList.concat(tweets);
-      console.log (tweets, 'tweet', infiniteTweetList)
       setTweetList(infiniteTweetList);
     })
   }

@@ -37,7 +37,6 @@ module.exports = {
         //   var result = await deepai.callStandardApi("sentiment-analysis", {
         //     text: "I hate hate hate to play with the newest APIs!"
         // });
-        console.log (tweetList)
 
         // console.log (result, ' sentiment analysis')
         res.send(tweetList).status(200);

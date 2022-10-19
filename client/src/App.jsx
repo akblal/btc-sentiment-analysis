@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
-import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button, Popover, Typography } from '@mui/material';
 
 import CoinPrice from './components/CoinPrice.jsx';
 import Sentiment from './components/Sentiment.jsx';
@@ -19,6 +19,11 @@ function App (props) {
   const [search, setSearch] = useState('');
   const [valid, setValid] = useState(true);
   const [invalidCrypto, setInvalidCrypto] = useState('');
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   const handleSubmit = (e) => {
     const selected = e.target.value;
@@ -40,7 +45,6 @@ function App (props) {
   }
 
   const handleSearchSubmit = (e) => {
-    console.log (search);
     axios.get(`https://api.coincap.io/v2/assets/${search}`)
     .then ((response) => {
       setValid(true);
@@ -53,6 +57,18 @@ function App (props) {
       setInvalidCrypto(search);
     })
   }
+
+  const handleClear = (e) => {
+    setCrypto('');
+  }
+
+  const handleAccessibilityOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleAccessibilityClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     document.body.className = theme;
@@ -67,12 +83,34 @@ function App (props) {
         }
       </div>
 
+      <div>
+        <div>
+          <Button aria-describedby={id} variant="contained" onClick={handleAccessibilityOpen}>
+            Open Popover
+          </Button>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleAccessibilityClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+          >
+            <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+          </Popover>
+        </div>
+      </div>
+
+
       <div className= 'web-title'>
           <h1> Crypto Sentiment Analysis </h1>
       </div>
 
       <div className= 'mui-container' >
-        <FormControl className= 'mui-component'>
+        <div className= 'select-crypto-and-button'>
+          <FormControl className= 'mui-component'>
           <InputLabel id="demo-simple-select-label">Crypto</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -86,7 +124,9 @@ function App (props) {
             <MenuItem value={'cardano'}>Cardano</MenuItem>
             <MenuItem value={'polygon'}>Polygon</MenuItem>
           </Select>
-        </FormControl>
+          </FormControl>
+          <Button variant="outlined" className= 'mui-submit-button' onClick= {handleClear}>Clear</Button>
+        </div>
 
         <div className= 'search-crypto-field-and-button'>
           {valid ?

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-
 
 function DropDownCrpto ({selectedCrypto, theme, crypto, arrayCrypto}) {
 

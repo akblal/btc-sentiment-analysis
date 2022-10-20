@@ -8,6 +8,7 @@ import { faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
 import { styled } from '@mui/material/styles';
 import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button, Popover, Typography, FormControlLabel, Switch } from '@mui/material';
 
+import DropDownCrpto from './components/DropDownCrypto.jsx'
 import CoinPrice from './components/CoinPrice.jsx';
 import TopCoinList from './components/TopCoinList.jsx';
 import Sentiment from './components/Sentiment.jsx';
@@ -23,14 +24,13 @@ function App (props) {
   const [valid, setValid] = useState(true);
   const [invalidCrypto, setInvalidCrypto] = useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const [arrayCrypto, setArrayCrypto] = useState (['bitcoin', 'ethereum', 'cardano', 'polygon']);
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  const handleSubmit = (e) => {
-    const selected = e.target.value;
-    setCrypto(selected);
+  const selectedCrypto = (coin) => {
+    setCrypto(coin);
   }
 
   const toggleTheme = (e) => {
@@ -115,54 +115,13 @@ function App (props) {
 
 
       <div className= 'app-title-container'>
-          <h1 onClick= {() => window.location.reload(false)} className= 'app-title'> Crypto Sentiment Analysis </h1>
+          <h1 onClick= {() => window.location.reload(false)} className= 'app-title'>Crypto Sentiment Analysis</h1>
       </div>
 
       <div className= 'mui-container' >
-        <div className= 'select-crypto-and-button'>
-          <FormControl className= 'mui-component'>
-          <InputLabel id="demo-simple-select-label">Crypto</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={crypto}
-            label="Age"
-            onChange={handleSubmit}
-            style = {{
-              color: theme === 'light' ? 'black' : 'white',
 
-            }}
-          >
-            <MenuItem
-              value={'bitcoin'}
-              style = {{
-                color: theme === 'light' ? 'black' : 'white',
-                backgroundColor: theme === 'light' ? 'white' : '#414545',
-              }}
-              >Bitcoin</MenuItem>
-            <MenuItem
-              value={'ethereum'}
-              style = {{
-                color: theme === 'light' ? 'black' : 'white',
-                backgroundColor: theme === 'light' ? 'white' : '#414545',
-              }}
-              >Ethereum</MenuItem>
-            <MenuItem
-              value={'cardano'}
-              style = {{
-                color: theme === 'light' ? 'black' : 'white',
-                backgroundColor: theme === 'light' ? 'white' : '#414545',
-              }}
-              >Cardano</MenuItem>
-            <MenuItem
-              value={'polygon'}
-              style = {{
-                color: theme === 'light' ? 'black' : 'white',
-                backgroundColor: theme === 'light' ? 'white' : '#414545',
-              }}
-              >Polygon</MenuItem>
-          </Select>
-          </FormControl>
+        <div className= 'select-crypto-and-button'>
+          <DropDownCrpto selectedCrypto= {selectedCrypto} theme= {theme} crypto= {crypto} arrayCrypto= {arrayCrypto} />
           <Button variant="outlined" className= 'mui-submit-button' onClick= {handleClear}>Clear</Button>
         </div>
 
@@ -195,7 +154,7 @@ function App (props) {
 
       <div className= 'price-and-sentiment'>
         <div>
-          <CoinPrice crypto= {crypto}/>
+          <CoinPrice crypto= {crypto} />
           <TopCoinList />
         </div>
         <div className= 'sentiment-container'>

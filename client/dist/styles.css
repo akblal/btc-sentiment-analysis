@@ -66,6 +66,7 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.top-coin-container,
 .sentiment-container,
 .price-container {
   padding-left: 10px;
@@ -76,12 +77,15 @@
 .price-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 
 .sentiment-container {
   display: flex;
   justify-content: left;
 }
+
 
 .coin-logo-container{
   display: flex;
@@ -110,6 +114,7 @@
 
 .top-coin-container {
   display: inline-block;
+  width: 150px;
 }
 
 .top-coin-container,
@@ -121,6 +126,15 @@
   border-style: solid;
   border-color: darkcyan;
   border-radius: 10px;
+}
+
+.top-coin-container:hover {
+  transform: scale(1.10);
+  cursor: pointer;
+}
+
+.top-coin-container:active{
+  transform: scale(95%);
 }
 
 .tweet-container:hover {

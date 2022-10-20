@@ -21,7 +21,7 @@ function TopCoinList () {
       {coinList.map((coin) => {
         return (
           <div className= 'top-coin-container'>
-            <h4>{coin.rank}. {coin.id} {coin.symbol}</h4>
+            <h4>{coin.rank}. {coin.symbol}</h4>
             <h3>{parseFloat(coin.priceUsd).toFixed(2).toLocaleString('en-US')}</h3>
             <h3>{parseFloat(coin.changePercent24Hr).toFixed(2)}</h3>
           </div>

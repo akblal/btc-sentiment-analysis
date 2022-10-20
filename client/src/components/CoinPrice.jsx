@@ -53,13 +53,15 @@ function CoinPrice ({crypto}) {
           </div>
           <div className= 'coin-info'>
             <div>{price}</div>
-            {Number(price) >= 0 ?
-              <FontAwesomeIcon icon={faArrowDownLong} /> :
-              <FontAwesomeIcon icon={faArrowDownLong} />
-            }
-            <span style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>
-              {priceChangePercent.substring(0,1) === '-' ? priceChangePercent.substring(1) : priceChangePercent}%
-            </span>
+            <div>
+              {Number(price) >= 0 ?
+                <FontAwesomeIcon icon={faArrowDownLong} /> :
+                <FontAwesomeIcon icon={faArrowDownLong} />
+              }
+              <span style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>
+                {priceChangePercent.substring(0,1) === '-' ? priceChangePercent.substring(1) : priceChangePercent}%
+              </span>
+            </div>
           </div>
         </div>
       }

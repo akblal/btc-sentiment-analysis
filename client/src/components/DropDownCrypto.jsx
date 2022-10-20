@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 function DropDownCrpto ({selectedCrypto, theme, crypto, arrayCrypto}) {
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const selected = e.target.value;
     selectedCrypto(selected);
     console.log (arrayCrypto)

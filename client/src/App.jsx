@@ -8,7 +8,8 @@ import { faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
 import { styled } from '@mui/material/styles';
 import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button, Popover, Typography, FormControlLabel, Switch } from '@mui/material';
 
-import DropDownCrpto from './components/DropDownCrypto.jsx'
+import DropDownCrpto from './components/DropDownCrypto.jsx';
+import CryptoSearch from './components/CryptoSearch.jsx';
 import CoinPrice from './components/CoinPrice.jsx';
 import TopCoinList from './components/TopCoinList.jsx';
 import Sentiment from './components/Sentiment.jsx';
@@ -41,9 +42,8 @@ function App (props) {
     }
   }
 
-  const handleSearchField = (e) => {
-    e.preventDefault();
-    let query = (e.target.value).toLowerCase();
+  const handleSearchField = (searched) => {
+    let query = (searched).toLowerCase();
     setSearch(query);
   }
 
@@ -102,61 +102,41 @@ function App (props) {
             </span>
             <div>
               <FormControlLabel
-              control={<Switch
-                sx={{ m: 1 }}
-                defaultChecked
-                onChange= {toggleTheme}/>}
-              label= {theme === 'light' ? 'Light' : 'Dark'}
-              value= 'start'
+                control={<Switch
+                  sx={{ m: 1 }}
+                  defaultChecked
+                  onChange= {toggleTheme}/>}
+                label= {theme === 'light' ? 'Light' : 'Dark'}
+                value= 'start'
              />
             </div>
           </Popover>
       </div>
-
 
       <div className= 'app-title-container'>
           <h1 onClick= {() => window.location.reload(false)} className= 'app-title'>Crypto Sentiment Analysis</h1>
       </div>
 
       <div className= 'mui-container' >
-
         <div className= 'select-crypto-and-button'>
           <DropDownCrpto selectedCrypto= {selectedCrypto} theme= {theme} crypto= {crypto} arrayCrypto= {arrayCrypto} />
           <Button variant="outlined" className= 'mui-submit-button' onClick= {handleClear}>Clear</Button>
         </div>
 
         <div className= 'search-crypto-field-and-button'>
-          {valid ?
-            <TextField
-
-            id="filled-required"
-            label="Search for Crypto"
-            className= 'mui-component'
-            onChange = {handleSearchField}
-            inputProps = {{ style: {color: theme === 'light' ? 'black' : 'white'}}}
-            /> :
-            <TextField
-            error
-            id="outlined-error-helper-text"
-            label="Error"
-            defaultValue= {invalidCrypto}
-            helperText="Coin Does Not Exist."
-            className= 'mui-component'
-            onChange = {handleSearchField}
-            inputProps = {{ style: {color: theme === 'light' ? 'black' : 'white'}}}
-            />
-          }
-
+          <CryptoSearch handleSearchField= {handleSearchField} theme= {theme} valid= {valid} invalidCrypto= {invalidCrypto}/>
           <Button variant="outlined" className= 'mui-submit-button' onClick= {handleSearchSubmit}>Submit</Button>
         </div>
-
       </div>
 
       <div className= 'price-and-sentiment'>
         <div>
-          <CoinPrice crypto= {crypto} />
+          {crypto.length > 0 &&
+            <CoinPrice crypto= {crypto} />
+          }
           <TopCoinList />
         </div>
+
         <div className= 'sentiment-container'>
           {crypto.length > 0 &&
             <Sentiment crypto = {crypto}/>

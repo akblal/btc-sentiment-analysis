@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 
-function TopCoinList ({ theme }) {
+function TopCoinList ({ theme, selectedCrypto }) {
 
   const [number, setNumber] = useState(5);
   const [coinList, setCoinList] = useState([]);
@@ -27,6 +27,11 @@ function TopCoinList ({ theme }) {
     getList(topNumber);
   }
 
+  const handleNewCrypto = (coin) => {
+    console.log (coin);
+    selectedCrypto(coin.id);
+  }
+
   return (
     <div>
       <div className= 'top-crypto-dropdown-title'>
@@ -47,6 +52,7 @@ function TopCoinList ({ theme }) {
             {numberCoins.map((num) => {
               return (
                 <MenuItem
+                  key = {num}
                   value={num}
                   style = {{
                     color: theme === 'light' ? 'black' : 'white',
@@ -66,7 +72,7 @@ function TopCoinList ({ theme }) {
 
       {coinList.map((coin) => {
         return (
-          <div className= 'top-coin-container'>
+          <div className= 'top-coin-container' key=  {coin.rank} onClick= {() => {handleNewCrypto(coin)}}>
             <h4>{coin.rank}. {coin.symbol}</h4>
             <h3>{parseFloat(coin.priceUsd).toFixed(2).toLocaleString('en-US')}</h3>
             <h3>{parseFloat(coin.changePercent24Hr).toFixed(2)}</h3>

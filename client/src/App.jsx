@@ -103,7 +103,7 @@ function App (props) {
           {crypto.length > 0 &&
             <CoinPrice crypto= {crypto} />
           }
-          <TopCoinList theme= {theme}/>
+          <TopCoinList theme= {theme} selectedCrypto= {selectedCrypto}/>
         </div>
 
         <div className= 'sentiment-container'>

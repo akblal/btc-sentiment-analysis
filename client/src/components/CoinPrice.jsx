@@ -7,6 +7,7 @@ function CoinPrice ({crypto}) {
 
   const [price, setPrice] = useState('');
   const [priceChangePercent, setPriceChangePercent] = useState('');
+  const [positive, setPositive] = useState(true);
   const [coinLogo, setCoinLogo] = useState('');
 
   const bitcoinLogo = 'https://seeklogo.com/images/B/bitcoin-logo-594596D72F-seeklogo.com.png?v=637945357710000000';
@@ -23,8 +24,8 @@ function CoinPrice ({crypto}) {
     .then ((response) => {
       let cryptoPrice = parseFloat(response.data.data.priceUsd);
       let priceChangePercent = parseFloat(response.data.data.changePercent24Hr);
-      setPrice(Number(cryptoPrice.toFixed(10)).toLocaleString('en-US'));
-      setPriceChangePercent(priceChangePercent.toFixed(5));
+      setPrice(Number(cryptoPrice.toFixed(2)).toLocaleString('en-US'));
+      setPriceChangePercent(priceChangePercent.toFixed(2));
     })
     .then(() => {
       if (crypto === 'bitcoin') {
@@ -56,13 +57,13 @@ function CoinPrice ({crypto}) {
               <FontAwesomeIcon icon={faArrowDownLong} /> :
               <FontAwesomeIcon icon={faArrowDownLong} />
             }
-            <span style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>{priceChangePercent}%</span>
+            <span style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>
+              {priceChangePercent.substring(0,1) === '-' ? priceChangePercent.substring(1) : priceChangePercent}%
+            </span>
           </div>
         </div>
       }
-
     </div>
-
   )
 }
 

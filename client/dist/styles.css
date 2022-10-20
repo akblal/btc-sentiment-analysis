@@ -25,10 +25,13 @@
 .app-title-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
+.app-title:active,
 .app-title:hover {
   cursor: pointer;
+  transform: scale(1.15);
 }
 
 .accessibility-icon {
@@ -78,9 +81,7 @@
 .sentiment-container {
   display: flex;
   justify-content: left;
-  align-items: center;
 }
-
 
 .coin-logo-container{
   display: flex;
@@ -107,6 +108,11 @@
   transform: scale(0.98);
 }
 
+.top-coin-container {
+  display: inline-block;
+}
+
+.top-coin-container,
 .tweet-container {
   margin-bottom: 5px;
   padding-left: 10px;

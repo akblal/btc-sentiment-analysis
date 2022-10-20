@@ -8,6 +8,8 @@ import { faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
 import { styled } from '@mui/material/styles';
 import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button, Popover, Typography, FormControlLabel, Switch } from '@mui/material';
 
+
+import AccessibiltyPopOver from './components/AccessibilityPopOver.jsx';
 import DropDownCrpto from './components/DropDownCrypto.jsx';
 import CryptoSearch from './components/CryptoSearch.jsx';
 import CoinPrice from './components/CoinPrice.jsx';
@@ -26,9 +28,6 @@ function App (props) {
   const [invalidCrypto, setInvalidCrypto] = useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [arrayCrypto, setArrayCrypto] = useState (['bitcoin', 'ethereum', 'cardano', 'polygon']);
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
 
   const selectedCrypto = (coin) => {
     setCrypto(coin);
@@ -80,37 +79,8 @@ function App (props) {
   return (
     <div className = {`App ${theme}`}>
       <div className= 'top-navigation-bar-container'>
-
           <FontAwesomeIcon onClick={handleAccessibilityOpen} icon= {faUniversalAccess} className= 'accessibility-icon'/>
-
-          <Popover
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleAccessibilityClose}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-          >
-            <h3>Viewing Mode: </h3>
-            <span className= 'toggle-theme-container'>
-              {theme === 'light' ?
-                <FontAwesomeIcon icon={faMoon} onClick= {toggleTheme} className= 'toggle-theme-button' /> :
-                <FontAwesomeIcon icon={faSun} onClick= {toggleTheme} className= 'toggle-theme-button' />
-              }
-            </span>
-            <div>
-              <FormControlLabel
-                control={<Switch
-                  sx={{ m: 1 }}
-                  defaultChecked
-                  onChange= {toggleTheme}/>}
-                label= {theme === 'light' ? 'Light' : 'Dark'}
-                value= 'start'
-             />
-            </div>
-          </Popover>
+          <AccessibiltyPopOver anchorEl= {anchorEl} handleAccessibilityClose= {handleAccessibilityClose} theme= {theme} toggleTheme= {toggleTheme}/>
       </div>
 
       <div className= 'app-title-container'>
@@ -150,13 +120,3 @@ function App (props) {
 root.render(<BrowserRouter>
     <App />
     </BrowserRouter>)
-
-  // <div className= 'drop-down'>
-  //   <select onChange= {handleSubmit}>
-  //     <option value= ''>Select Crypto</option>
-  //     <option value= 'bitcoin'>Bitcoin</option>;
-  //     <option value= 'ethereum'>Ethereum</option>;
-  //     <option value= 'polygon'>Polygon</option>;
-  //     <option value= 'cardano'>Cardano</option>;
-  //   </select>
-  // </div>

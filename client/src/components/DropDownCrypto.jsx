@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { FormControl, InputLabel, Select, MenuItem, Box, TextField, Button, Popover, Typography, FormControlLabel, Switch } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 
 function DropDownCrpto ({selectedCrypto, theme, crypto, arrayCrypto}) {
@@ -24,20 +24,18 @@ function DropDownCrpto ({selectedCrypto, theme, crypto, arrayCrypto}) {
             color: theme === 'light' ? 'black' : 'white',
           }}
         >
-
-        {
-          arrayCrypto.map((coin) => {
-            return (
-              <MenuItem
-                value={coin}
-                style = {{
-                  color: theme === 'light' ? 'black' : 'white',
-                  backgroundColor: theme === 'light' ? 'white' : '#414545',
-                }}
-              >
-                {coin.substring(0,1).toUpperCase() + coin.substring(1)}
-              </MenuItem>
-              )})
+        {arrayCrypto.map((coin) => {
+          return (
+            <MenuItem
+              value={coin}
+              style = {{
+                color: theme === 'light' ? 'black' : 'white',
+                backgroundColor: theme === 'light' ? 'white' : '#414545',
+              }}
+            >
+              {coin.substring(0,1).toUpperCase() + coin.substring(1)}
+            </MenuItem>
+          )})
         }
         </Select>
       </FormControl>

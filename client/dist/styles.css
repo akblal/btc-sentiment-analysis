@@ -112,6 +112,19 @@
   transform: scale(0.98);
 }
 
+.top-crypto-dropdown-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.top-crypto-dropdown:hover,
+.top-crypto-dropdown:active {
+  cursor: pointer;
+}
+
 .top-coin-container {
   display: inline-block;
   width: 150px;

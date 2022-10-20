@@ -29,10 +29,10 @@ function TopCoinList ({ theme }) {
 
   return (
     <div>
-      <div>
+      <div className= 'top-crypto-dropdown-title'>
         <span>Top</span>
         <span>
-          <FormControl>
+          <FormControl className= 'top-crypto-dropdown'>
             <InputLabel id="demo-simple-select-label">Want More Top Coins?</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -41,6 +41,7 @@ function TopCoinList ({ theme }) {
               onChange={handleTopNumber}
               style = {{
                 color: theme === 'light' ? 'black' : 'white',
+                height: '50px',
               }}
             >
             {numberCoins.map((num) => {

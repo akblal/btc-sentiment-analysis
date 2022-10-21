@@ -37,13 +37,3 @@ function AccessibilityPopOver ({ anchorEl, handleAccessibilityClose, theme, togg
 }
 
 export default AccessibilityPopOver;
-
-// <span className= 'toggle-theme-container'>
-//           {theme === 'light' ?
-//             <FontAwesomeIcon icon={faMoon} onClick= {switchTheme} className= 'toggle-theme-button' /> :
-//             <FontAwesomeIcon icon={faSun} onClick= {switchTheme} className= 'toggle-theme-button' />
-//           }
-//         </span>
-
-
-

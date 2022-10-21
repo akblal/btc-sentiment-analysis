@@ -44,32 +44,3 @@ function DropDownCrpto ({selectedCrypto, theme, crypto, arrayCrypto}) {
 }
 
 export default DropDownCrpto;
-
-// <MenuItem
-//             value={'bitcoin'}
-//             style = {{
-//               color: theme === 'light' ? 'black' : 'white',
-//               backgroundColor: theme === 'light' ? 'white' : '#414545',
-//             }}
-//             >Bitcoin</MenuItem>
-//           <MenuItem
-//             value={'ethereum'}
-//             style = {{
-//               color: theme === 'light' ? 'black' : 'white',
-//               backgroundColor: theme === 'light' ? 'white' : '#414545',
-//             }}
-//             >Ethereum</MenuItem>
-//           <MenuItem
-//             value={'cardano'}
-//             style = {{
-//               color: theme === 'light' ? 'black' : 'white',
-//               backgroundColor: theme === 'light' ? 'white' : '#414545',
-//             }}
-//             >Cardano</MenuItem>
-//           <MenuItem
-//             value={'polygon'}
-//             style = {{
-//               color: theme === 'light' ? 'black' : 'white',
-//               backgroundColor: theme === 'light' ? 'white' : '#414545',
-//             }}
-//             >Polygon</MenuItem>

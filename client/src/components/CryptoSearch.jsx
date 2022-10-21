@@ -34,6 +34,3 @@ function CryptoSearch ({ handleSearchField, theme, valid, invalidCrypto }) {
 }
 
 export default CryptoSearch;
-
-
-

@@ -26,6 +26,7 @@ function DropDownCrpto ({selectedCrypto, theme, crypto, arrayCrypto}) {
         {arrayCrypto.map((coin) => {
           return (
             <MenuItem
+              key= {coin}
               value={coin}
               style = {{
                 color: theme === 'light' ? 'black' : 'white',

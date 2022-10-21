@@ -14,7 +14,7 @@ function CoinPrice ({crypto}) {
   const ethereumLogo = 'https://seeklogo.com/images/E/ethereum-logo-EC6CDBA45B-seeklogo.com.png';
   const polygonLogo = 'https://seeklogo.com/images/P/polygon-matic-logo-1DFDA3A3A8-seeklogo.com.png';
   const cardanoLogo = 'https://seeklogo.com/images/C/cardano-ada-logo-4B6BADDB43-seeklogo.com.png';
-
+  const otherLogo = 'https://seeklogo.com/images/D/do-not-enter-traffic-sign-logo-C4CA8A63D0-seeklogo.com.png?v=637842575010000000';
   useEffect(() => {
     cryptoInfo(crypto);
   }, [crypto])
@@ -36,6 +36,8 @@ function CoinPrice ({crypto}) {
         setCoinLogo(polygonLogo);
       } else if (crypto === 'cardano') {
         setCoinLogo(cardanoLogo);
+      } else {
+        setCoinLogo(otherLogo);
       }
     })
   }
@@ -53,11 +55,11 @@ function CoinPrice ({crypto}) {
         <div className= 'coin-info'>
           <div>{price}</div>
           <div>
-            {Number(price) >= 0 ?
-              <FontAwesomeIcon icon={faArrowDownLong} /> :
+            {Number(priceChangePercent) >= 0 ?
+              <FontAwesomeIcon icon={faArrowUpLong} /> :
               <FontAwesomeIcon icon={faArrowDownLong} />
             }
-            <span style= {{color: priceChangePercent > 0 ? 'green' : 'red'}}>
+            <span style= {{color: priceChangePercent >= 0 ? 'green' : 'red'}}>
               {priceChangePercent.substring(0,1) === '-' ? priceChangePercent.substring(1) : priceChangePercent}%
             </span>
           </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-
 function TopCoinList ({ theme, selectedCrypto }) {
 
   const [number, setNumber] = useState(5);
@@ -68,7 +67,6 @@ function TopCoinList ({ theme, selectedCrypto }) {
         </span>
         <span> Crypto!</span>
       </div>
-
 
       {coinList.map((coin) => {
         return (

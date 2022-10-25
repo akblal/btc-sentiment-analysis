@@ -65,4 +65,3 @@ function Sentiment ({crypto}) {
 }
 
 export default Sentiment;
-

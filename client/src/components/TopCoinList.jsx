@@ -82,4 +82,3 @@ function TopCoinList ({ theme, selectedCrypto }) {
 }
 
 export default TopCoinList;
-
